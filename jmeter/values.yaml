@@ -1,0 +1,30 @@
+imageCredentials:
+  registry: docker.com
+  #pullSecrets: docker-registry-secrets
+  # username: docker_user
+  # password: docker_user_password
+# docker image for master and slaves
+images:
+  master:
+    repo: danminor98/jmeter_master
+    tag: latest
+    pullPolicy: Always
+  slave:
+    repo: danminor98/jmeter_slave
+    tag: latest
+    pullPolicy: Always
+
+annotations: {}
+
+config:
+  disableSSL: true
+  master:
+    #testsConfigMap: jmeter-test
+    replicaCount: 1
+    restartPolicy: Always
+    oneShotTest: false
+  slaves:
+    replicaCount: 2
+    restartPolicy: Always
+
+labels: {}
